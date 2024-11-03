@@ -20,5 +20,5 @@ Trabalho Feito por Álvaro Calebe Souza Ferreira na Disciplina Tópicos em Progr
 # 6 Passo
 -Foi feito a correção de alguns bug's e a testagem de todas as funcinalidades do sistema, também foi feito alguns refinos no front como: Troca de fontes e ajuste de botões. 
 
-Por mais que o sistema ficou simples deu para aprender bastante sobre a tecnologia proposta e usar todas as técnicas passadas em sala de aula, foi um desafio bem legal ter pesquisar soluções de algo que não estamos acostumados. Fica meu agradecimento ao professor JOSE ITAMAR MENDES DE SOUZA JUNIOR pela a oportunidade. 
+Por mais que o sistema ficou simples deu para aprender bastante sobre a tecnologia proposta e usar todas as técnicas passadas em sala de aula, foi um desafio bem legal ter pesquisar soluções de algo que não estamos acostumados. Fica meu agradecimento ao professor JOSÉ ITAMAR MENDES DE SOUZA JUNIOR pela a oportunidade. 
 
