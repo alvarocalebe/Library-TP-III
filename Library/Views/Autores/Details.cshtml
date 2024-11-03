@@ -1,0 +1,95 @@
+﻿@model Library.Models.Autor
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900&display=swap" rel="stylesheet">
+    <title>Details of Author</title>
+    <style>
+        body {
+            font-family: "Montserrat", sans-serif;
+            background-color: #f4f7fa;
+            color: #343a40;
+            padding: 0;
+            margin: 0;
+        }
+
+        h2 {
+            color: #0083aa;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .details-container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+        }
+
+        .dl-horizontal {
+            display: flex;
+            flex-direction: column;
+        }
+
+        dt {
+            font-weight: bold;
+            margin: 10px 0 5px;
+        }
+
+        dd {
+            margin: 0 0 10px 0;
+            padding: 0 15px;
+            background-color: #f4f7fa;
+            border-left: 4px solid #0083aa;
+        }
+
+        .back-link {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .btn-link {
+            color: #0083aa;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+            .btn-link:hover {
+                color: #0056b3;
+                text-decoration: underline;
+            }
+    </style>
+</head>
+<body>
+    <h2>Detalhes</h2>
+
+    <div class="details-container">
+        <h4>Autor</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Nome)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Nome)
+            </dd>
+        </dl>
+    </div>
+
+    <div class="back-link">
+        @Html.ActionLink("Editar", "Edit", new { id = Model.ID }, new { @class = "btn-link" }) |
+        @Html.ActionLink("Voltar para lista", "Index", null, new { @class = "btn-link" })
+    </div>
+</body>
+</html>

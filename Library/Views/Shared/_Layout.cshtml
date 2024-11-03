@@ -1,0 +1,135 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Meu Aplicativo ASP.NET</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+    <style>
+        /* Estilos gerais */
+        body {
+            font-family: "Open Sans", sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .navbar {
+            margin-bottom: 20px;
+            font-family: "Open Sans", sans-serif;
+            background-color: #45b9e3;
+            color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Adiciona a sombra */
+        }
+
+        .navbar-brand {
+            display: flex;
+            align-items: center;
+            color: white !important;
+            transition: color 0.3s ease;
+        }
+
+            .navbar-brand:hover {
+                color: #0083aa !important;
+            }
+
+            .navbar-brand img {
+                height: 40px;
+                margin-right: 10px;
+            }
+
+        .nav-link {
+            color: white !important;
+            transition: color 0.3s ease;
+        }
+
+            .nav-link:hover {
+                color: #0083aa !important;
+            }
+
+        /* Container principal */
+        .container.body-content {
+            flex: 1;
+            margin-bottom: 20px;
+        }
+
+        /* Footer fixo no rodapé */
+        footer {
+            background-color: #0083aa;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            width: 100%;
+        }
+
+        .footer-info {
+            font-size: 0.9rem;
+            line-height: 1.5;
+            font-family: "Open Sans", sans-serif;
+            color: white;
+            font-weight: 500;
+        }
+
+            .footer-info p {
+                margin: 5px 0;
+                font-family: "Open Sans", sans-serif;
+                color: white;
+                font-weight: 500;
+            }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm">
+        <div class="container">
+            <a class="navbar-brand" href="@Url.Action("Index", "Home")">
+                <img src="~/imagens/icons/book.png" alt="Logo Iguana" style="width: 40px; height: 40px; margin-right: 10px;">
+                Library Book's
+            </a>
+            <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" title="Alternar a navegação" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
+                <ul class="navbar-nav flex-grow-1">
+
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <li>@Html.ActionLink("Minhas Reservas", "MinhasReservas", "Reservas", new { area = "" }, new { @class = "nav-link" })</li>
+                    }
+
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <li>@Html.ActionLink("Livros", "Index", "Livros", new { area = "" }, new { @class = "nav-link" })</li>
+                        <li>@Html.ActionLink("Categorias", "Index", "Categorias", new { area = "" }, new { @class = "nav-link" })</li>
+                        <li>@Html.ActionLink("Autores", "Index", "Autores", new { area = "" }, new { @class = "nav-link" })</li>
+                    }
+                </ul>
+                @Html.Partial("_LoginPartial")
+            </div>
+        </div>
+    </nav>
+    +
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+    </div>
+
+    <footer>
+        <div class="footer-info">
+            <p>&copy; @DateTime.Now.Year - Library Book's . Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

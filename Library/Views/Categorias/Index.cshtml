@@ -1,0 +1,152 @@
+﻿@model IEnumerable<Library.Models.Categoria>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900&display=swap" rel="stylesheet">
+    <title>Lista de Categorias</title>
+    <style>
+        body {
+            font-family: "Montserrat", sans-serif;
+            background-color: #f4f7fa;
+            color: #343a40;
+            padding: 0;
+            margin: 0;
+        }
+
+        h2 {
+            color: black;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .table-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+        }
+
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+            .table th, .table td {
+                padding: 10px;
+                border: 1px solid #dee2e6;
+                text-align: left;
+            }
+
+            .table th {
+                background-color: #0083aa;
+                color: white;
+            }
+
+        .action-links {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn {
+            background-color: #0083aa;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+
+            .btn:hover {
+                background-color: #006684;
+                
+            }
+
+   
+
+      
+
+
+        .btn-edit {
+            background-color: #e67e22;
+        }
+
+            .btn-edit:hover {
+                background-color: #d35400;
+            }
+
+
+        .btn-delete {
+            background-color: #B22222;
+        }
+
+            .btn-delete:hover {
+                background-color: #8B0000;
+            }
+
+        .btn-link {
+            background-color: #008000;
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+            .btn-link:hover {
+                color: white;
+                background-color: #006400;
+            }
+
+        .create-button {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <main class="table-container">
+        <h2>Lista de Categorias</h2>
+
+        <div class="create-button">
+            @if (User.IsInRole("Admin"))
+            {
+                @Html.ActionLink("Criar Nova Categoria", "Create", null, new { @class = "btn" })
+            }
+        </div>
+
+        <table class="table">
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.Nome)</th>
+                <th>Ações</th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.Nome)</td>
+                    <td>
+                        <div class="action-links">
+                            @if (User.IsInRole("Admin"))
+                            {
+                                @Html.ActionLink("Detalhes", "Details", new { id = item.ID }, new { @class = "btn btn-link" })
+                                @Html.ActionLink("Editar", "Edit", new { id = item.ID }, new { @class = "btn btn-edit" })
+                                @Html.ActionLink("Deletar", "Delete", new { id = item.ID }, new { @class = "btn btn-delete", onclick = "return confirm('Tem certeza que deseja excluir esta categoria?');" })
+                            }
+                        </div>
+                    </td>
+                </tr>
+            }
+        </table>
+    </main>
+</body>
+</html>

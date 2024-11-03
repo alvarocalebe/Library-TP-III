@@ -1,0 +1,105 @@
+﻿@model Library.Models.Categoria
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Detalhes da Categoria";
+}
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <title>Detalhes da Categoria</title>
+    <style>
+        body {
+            font-family: "Montserrat", sans-serif;
+            background-color: #f4f7fa;
+            color: #343a40;
+            padding: 0;
+            margin: 0;
+        }
+
+        .details-container {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2, h4 {
+            text-align: center;
+            color: black;
+            margin-bottom: 20px;
+        }
+
+        .dl-horizontal dt {
+            font-weight: bold;
+            color: #343a40;
+        }
+
+        .dl-horizontal dd {
+            margin-left: 0;
+            margin-bottom: 10px;
+            color: #6c757d;
+        }
+
+        .btn {
+           background-color: #0083aa;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+
+            .btn:hover {
+                background-color: #006684;
+            }
+
+        .btn-link {
+            color: #0083aa;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+            .btn-link:hover {
+                color: #0056b3;
+                text-decoration: underline;
+            }
+
+        .action-links {
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="details-container">
+        <h2>Detalhes da Categoria</h2>
+
+        <h4>Categoria</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Nome)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Nome)
+            </dd>
+        </dl>
+
+        <div class="action-links">
+            @Html.ActionLink("Editar", "Edit", new { id = Model.ID }, new { @class = "btn" }) |
+            @Html.ActionLink("Voltar para a Lista", "Index", null, new { @class = "btn-link" })
+        </div>
+    </div>
+</body>
+</html>

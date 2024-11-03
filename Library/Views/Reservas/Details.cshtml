@@ -1,0 +1,136 @@
+﻿@model Library.Models.Reserva
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml"; // Mantendo um layout padrão
+}
+
+<!DOCTYPE html>
+
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Detalhes da Reserva</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: "Montserrat", sans-serif;
+            background-color: #f4f7fa;
+            color: black;
+            padding: 0px;
+            margin: 0; /* Remove margens padrão do body */
+        }
+
+        h4 {
+            color: black;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        dl {
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            padding: 15px;
+            background-color: white;
+        }
+
+        dt {
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        dd {
+            margin-bottom: 10px;
+        }
+
+        .back-link {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            background-color: #0083aa;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+
+            .back-link:hover {
+                background-color: #006684;
+            }
+
+        .book-image {
+            max-width: 100px;
+            margin: 10px auto;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <h4>Reserva</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Livro.Titulo)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Livro.Titulo)
+            </dd>
+
+            
+            <dt>Autor(a)</dt>
+            
+            <dd>
+                @Html.DisplayFor(model => model.Livro.Autor.Nome)
+            </dd>
+
+            <dt>Categoria </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Livro.Categoria.Nome)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Livro.NomeEditora) <!-- Editora do livro -->
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Livro.NomeEditora)
+            </dd>
+
+            <dt>
+                @Html.DisplayName("Capa do Livro") <!-- Rótulo para a imagem -->
+            </dt>
+            <dd>
+                @if (!string.IsNullOrEmpty(Model.Livro.NomeImagem))
+                {
+                    <img src="~/Imagens/@Model.Livro.NomeImagem" alt="Imagem do Livro" class="book-image" />
+                }
+                else
+                {
+                    <span>Sem Imagem</span>
+                }
+            </dd>
+
+        
+
+            <dt>
+                @Html.DisplayNameFor(model => model.DataReserva)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.DataReserva)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.DataExpiracao)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.DataExpiracao)
+            </dd>
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Voltar para Lista", "MinhasReservas", "Reservas", null, new { @class = "back-link" })
+    </p>
+</body>
+</html>

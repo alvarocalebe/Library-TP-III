@@ -1,0 +1,134 @@
+﻿@model Library.Models.RegisterViewModel
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrar-se</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        main {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background-color: #f5f7fa;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            color: #333;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        #loginForm {
+            max-width: 400px;
+            width: 100%;
+            padding: 2rem;
+            border-radius: 8px;
+            background-color: #ffffff;
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+            #loginForm h4 {
+                font-size: 1.2rem;
+                color: #555;
+                margin-bottom: 1.5rem;
+                text-align: center;
+            }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-control {
+            width: 100%;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+            padding: 0.5rem;
+        }
+
+        .text-danger {
+            font-size: 0.9rem;
+            color: #d9534f;
+        }
+
+        .btn-outline-dark {
+            background-color: #343a40;
+            color: #ffffff;
+            padding: 0.6rem 1.2rem;
+            border-radius: 4px;
+            border: none;
+            font-size: 1rem;
+            cursor: pointer;
+            width: 100%;
+            transition: background-color 0.3s ease;
+        }
+
+            .btn-outline-dark:hover {
+                background-color: #23272b;
+            }
+
+        .form-check {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-check-input {
+            margin-right: 0.5rem;
+        }
+
+        p {
+            text-align: center;
+            margin-top: 1rem;
+        }
+
+            p a {
+                color: #007bff;
+                text-decoration: none;
+                font-weight: 500;
+            }
+
+                p a:hover {
+                    text-decoration: underline;
+                }
+    </style>
+</head>
+<body>
+    <main>
+        <div id="loginForm">
+            <h2>Registrar-se</h2>
+            @using (Html.BeginForm("Register", "Account", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Email)
+                    @Html.TextBoxFor(model => model.Email, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Password)
+                    @Html.PasswordFor(model => model.Password, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.ConfirmPassword)
+                    @Html.PasswordFor(model => model.ConfirmPassword, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.ConfirmPassword, "", new { @class = "text-danger" })
+                </div>
+
+                <button type="submit" class="btn-outline-dark">Registrar</button>
+            }
+        </div>
+    </main>
+</body>
+</html>

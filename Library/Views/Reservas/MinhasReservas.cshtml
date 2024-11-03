@@ -1,0 +1,127 @@
+﻿@model IEnumerable<Library.Models.Reserva>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Minhas Reservas";
+}
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <title>Minhas Reservas</title>
+    <style>
+        body {
+            font-family: "Montserrat", sans-serif;
+            background-color: #f4f7fa;
+            color: black;
+            padding: 0;
+            margin: 0;
+        }
+
+        h2 {
+            color: black;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .table {
+            width: 90%;
+            margin: 0 auto;
+            border-collapse: collapse;
+        }
+
+            .table th, .table td {
+                border: 1px solid #dee2e6;
+                padding: 10px;
+                text-align: left;
+            }
+
+            .table th {
+                background-color: #0083aa;
+                color: white;
+            }
+
+            .table tr:hover {
+                background-color: #f1f1f1;
+            }
+
+        .action-links {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn {
+            background-color: #0083aa;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+
+            .btn:hover {
+                background-color: #006684;
+            }
+
+
+        .btn-details {
+            background-color: #008000;
+        }
+
+            .btn-details:hover {
+                background-color: #006400;
+            }
+
+        .btn-delete {
+            background-color: #B22222;
+        }
+
+            .btn-delete:hover {
+                background-color: #8B0000;
+            }
+
+    </style>
+</head>
+<body>
+    <main>
+        <h2>Minhas Reservas</h2>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Livro</th>
+                    <th>Data da Reserva</th>
+                    <th>Data de Expiração</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var reserva in Model)
+                {
+                    <tr>
+                        <td>@reserva.Livro.Titulo</td>
+                        <td>@reserva.DataReserva.ToString("d")</td>
+                        <td>@reserva.DataExpiracao.ToString("d")</td>
+                        <td>
+                            <div class="action-links">
+                                @Html.ActionLink("Ver", "Details", new { id = reserva.ID }, new { @class = "btn btn-details" }) |
+                                @Html.ActionLink("Excluir", "Delete", new { id = reserva.ID }, new { @class = "btn btn-delete", onclick = "return confirm('Tem certeza que deseja excluir esta reserva?');" })
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+        <div style="text-align: center; margin-top: 20px;">
+            @Html.ActionLink("Nova Reserva", "Index", "Home", null, new { @class = "btn" })
+        </div>
+    </main>
+</body>
+</html>
