@@ -1,5 +1,47 @@
 # Library
 
+Execução:
+
+* 1 Clone o repositório e abra o projeto no Visual Studio.
+* 2 Configure a conexão com o banco de dados no arquivo de configuração (Web.config), ajustando a connectionString.
+* 3 Realize as migrações para criar as tabelas no banco de dados com o Entity Framework (utilize Enable-Migrations e Update-Database no Console do Gerenciador de 
+ Pacotes).
+* 4 Execute o projeto no Visual Studio (F5) para iniciar o servidor de desenvolvimento e acessar a aplicação pelo navegador.
+
+Observação:
+
+1. Adicionar os arquivos do Roslyn ao projeto
+* Verifique se o projeto está configurado para usar o Microsoft.CodeDom.Providers.DotNetCompilerPlatform (provavelmente no arquivo packages.config ou no Web.config).
+* Se o pacote estiver configurado, restaure-o e garanta que os arquivos do Roslyn sejam incluídos no projeto:
+* Abra o Package Manager Console no Visual Studio e execute:
+
+Update-Package Microsoft.CodeDom.Providers.DotNetCompilerPlatform -Reinstall
+
+* Isso deve restaurar os arquivos ausentes do Roslyn, incluindo o csc.exe.
+
+OBS: Não se esqueça de adicionar as chaves de autenticação do Email.
+
+- Passo a Passo para Configurar SMTP com AddKeys
+1- Abra o arquivo Web.config na raiz do seu projeto.
+2- Encontre ou adicione a seção <appSettings> para armazenar as configurações SMTP.
+3- Insira as configurações de SMTP como chaves:
+
+  <configuration>
+  <!-- Outras configurações do Web.config -->
+
+  <appSettings>
+    <!-- Configurações do SMTP -->
+    <add key="SmtpHost" value="smtp.seuprovedor.com" />       <!-- Endereço do servidor SMTP -->
+    <add key="SmtpPort" value="587" />                         <!-- Porta do servidor SMTP (ex: 587 para TLS) -->
+    <add key="SmtpUser" value="seuemail@dominio.com" />        <!-- Seu e-mail para autenticação -->
+    <add key="SmtpPassword" value="suaSenhaSegura" />          <!-- Senha do seu e-mail -->
+    <add key="SmtpFromAddress" value="seuemail@dominio.com" /> <!-- Endereço "De" para os e-mails -->
+  </appSettings>
+
+  <!-- Outras configurações do Web.config -->
+</configuration>
+
+
 Trabalho Feito por Álvaro Calebe Souza Ferreira na Disciplina Tópicos em Programação III.
 
 # 1 Passo
@@ -20,5 +62,4 @@ Trabalho Feito por Álvaro Calebe Souza Ferreira na Disciplina Tópicos em Progr
 # 6 Passo
 -Foi feito a correção de alguns bug's e a testagem de todas as funcinalidades do sistema, também foi feito alguns refinos no front como: Troca de fontes e ajuste de botões. 
 
-Por mais que o sistema ficou simples deu para aprender bastante sobre a tecnologia proposta e usar todas as técnicas passadas em sala de aula, foi um desafio bem legal ter pesquisar soluções de algo que não estamos acostumados. Fica meu agradecimento ao professor JOSÉ ITAMAR MENDES DE SOUZA JUNIOR pela a oportunidade. 
 
